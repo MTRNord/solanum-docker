@@ -47,4 +47,4 @@ EXPOSE 6665-6669
 EXPOSE 6697
 EXPOSE 9999
 
-CMD ["/usr/local/bin/solanum", "-foreground", "-configfile", "/ircd/ircd.conf"]
+CMD ["/usr/local/bin/solanum", "-foreground"]
