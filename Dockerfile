@@ -34,7 +34,6 @@ RUN set -xe; \
 FROM alpine:latest
 ARG SOLANUM_UID
 
-RUN adduser -D ircd
 RUN apk add --no-cache sqlite-dev gnutls libtool
 COPY --from=builder --chown=ircd /usr/local /usr/local
 
