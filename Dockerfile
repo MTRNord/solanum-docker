@@ -38,7 +38,7 @@ RUN apk add --no-cache sqlite-dev gnutls libtool
 COPY --from=builder --chown=ircd /usr/local /usr/local
 
 RUN mkdir /ircd
-RUN adduser -D -u $SOLANUM_UID ircd 
+RUN adduser -D -h /ircd -u $SOLANUM_UID ircd
 RUN chown -R ircd /ircd
 USER ircd
 
