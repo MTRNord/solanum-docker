@@ -27,7 +27,7 @@ RUN set -xe; \
 	&& ./configure --prefix=/usr/local/ --sysconfdir=/ircd --enable-gnutls $BUILD_FLAG \
 	&& make \
         && make install \
-	&& mv /usr/local/etc/ircd.conf.example /usr/local/etc/ircd.conf \
+	&& mv /ircd/etc/ircd.conf.example /ircd/etc/ircd.conf \
 	&& apk del .build-deps \
 	&& rm -rf /var/cache/apk/*
 
