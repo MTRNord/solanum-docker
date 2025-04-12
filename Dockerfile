@@ -15,7 +15,7 @@ RUN set -xe; \
 		flex \
 		bison \
 		sqlite-dev \
-		mbedtls-dev \
+		gnutls-dev \
 		zlib-dev \
 		automake \
 		autoconf \
@@ -24,7 +24,7 @@ RUN set -xe; \
 	&& git clone https://github.com/solanum-ircd/solanum.git \
 	&& cd /solanum \
         && ./autogen.sh \
-	&& ./configure --prefix=/usr/local/ --enable-mbedtls $BUILD_FLAG \
+	&& ./configure --prefix=/usr/local/ --enable-gnutls $BUILD_FLAG \
 	&& make \
         && make install \
 	&& mv /usr/local/etc/ircd.conf.example /usr/local/etc/ircd.conf \
@@ -34,7 +34,7 @@ RUN set -xe; \
 FROM alpine:latest
 
 RUN adduser -D ircd
-RUN apk add --no-cache sqlite-dev mbedtls libtool
+RUN apk add --no-cache sqlite-dev gnutls libtool
 COPY --from=builder --chown=ircd /usr/local /usr/local
 
 RUN mkdir /ircd
