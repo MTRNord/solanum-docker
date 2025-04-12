@@ -32,6 +32,7 @@ RUN set -xe; \
 	&& rm -rf /var/cache/apk/*
 
 FROM alpine:latest
+ARG SOLANUM_UID
 
 RUN adduser -D ircd
 RUN apk add --no-cache sqlite-dev gnutls libtool
