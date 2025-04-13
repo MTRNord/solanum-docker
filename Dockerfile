@@ -21,11 +21,12 @@ RUN set -xe; \
 		autoconf \
 		libtool \
 		openssl \
+		openssl-dev \
 	\
 	&& git clone https://github.com/solanum-ircd/solanum.git \
 	&& cd /solanum \
         && ./autogen.sh \
-	&& ./configure --prefix=/usr/local/ --sysconfdir=/ircd/etc --enable-gnutls $BUILD_FLAG \
+	&& ./configure --prefix=/usr/local/ --sysconfdir=/ircd/etc --enable-openssl $BUILD_FLAG \
 	&& make \
         && make install \
 	&& mv /ircd/etc/ircd.conf.example /ircd/etc/ircd.conf \
@@ -41,7 +42,7 @@ RUN mkdir /ircd
 RUN adduser -D -h /ircd -u $SOLANUM_UID ircd
 RUN chown -R ircd /ircd
 
-RUN apk add --no-cache sqlite-dev gnutls libtool
+RUN apk add --no-cache sqlite-dev openssl libtool
 COPY --from=builder --chown=ircd /usr/local /usr/local
 COPY --from=builder --chown=ircd /ircd /ircd
 
