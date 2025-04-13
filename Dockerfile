@@ -24,7 +24,7 @@ RUN set -xe; \
 	&& git clone https://github.com/solanum-ircd/solanum.git \
 	&& cd /solanum \
         && ./autogen.sh \
-	&& ./configure --prefix=/usr/local/ --sysconfdir=/ircd --enable-gnutls $BUILD_FLAG \
+	&& ./configure --prefix=/usr/local/ --sysconfdir=/ircd/etc --enable-gnutls $BUILD_FLAG \
 	&& make \
         && make install \
 	&& mv /ircd/etc/ircd.conf.example /ircd/etc/ircd.conf \
