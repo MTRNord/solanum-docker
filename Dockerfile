@@ -20,6 +20,7 @@ RUN set -xe; \
 		automake \
 		autoconf \
 		libtool \
+		openssl \
 	\
 	&& git clone https://github.com/solanum-ircd/solanum.git \
 	&& cd /solanum \
@@ -29,7 +30,8 @@ RUN set -xe; \
         && make install \
 	&& mv /ircd/etc/ircd.conf.example /ircd/etc/ircd.conf \
 	&& apk del .build-deps \
-	&& rm -rf /var/cache/apk/*
+	&& rm -rf /var/cache/apk/* \
+	&& openssl dhparam -out /ircd/etc/dh.pem 2048
 
 FROM alpine:latest
 ARG SOLANUM_UID
