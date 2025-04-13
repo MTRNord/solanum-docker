@@ -29,9 +29,9 @@ RUN set -xe; \
 	&& make \
         && make install \
 	&& mv /ircd/etc/ircd.conf.example /ircd/etc/ircd.conf \
+	&& openssl dhparam -out /ircd/etc/dh.pem 2048 \
 	&& apk del .build-deps \
-	&& rm -rf /var/cache/apk/* \
-	&& openssl dhparam -out /ircd/etc/dh.pem 2048
+	&& rm -rf /var/cache/apk/*
 
 FROM alpine:latest
 ARG SOLANUM_UID
